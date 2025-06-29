@@ -87,38 +87,21 @@ const handleAddToCart = async() =>{
 
         <div className="IndividualProduct-body">
 
-            <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <div className="product-images-section">
+                <img src={productMainImg} className="main-product-img" alt="Main" style={{width: '60%', marginBottom: '1rem', borderRadius: '0.4rem'}} />
+                <div className="carousel-thumbnails" style={{display: 'flex', gap: '1rem'}}>
+                    {productCarouselImg1 && <img src={productCarouselImg1} alt="carousel1" style={{width: '80px', height: '80px', borderRadius: '0.3rem'}} />}
+                    {productCarouselImg2 && <img src={productCarouselImg2} alt="carousel2" style={{width: '80px', height: '80px', borderRadius: '0.3rem'}} />}
+                    {productCarouselImg3 && <img src={productCarouselImg3} alt="carousel3" style={{width: '80px', height: '80px', borderRadius: '0.3rem'}} />}
                 </div>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                    <img src={productCarouselImg1} className="d-block w-100" alt="..."  />
-                    </div>
-                    <div className="carousel-item">
-                    <img src={productCarouselImg2} className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                    <img src={productCarouselImg3} className="d-block w-100" alt="..." />
-                    </div>
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
             </div>
 
 
             <div className="IndividualProduct-data">
                 <h3>{productName}</h3>
-                <p>{productDescription}</p>
-                
+                <p><b>Category:</b> {productCarouselImg1 ? productCarouselImg1.split('/')[0] : 'N/A'}</p>
+                <p><b>Gender:</b> {/* If you have gender info, display here, else remove */}</p>
+                <p><b>Description:</b> {productDescription}</p>
                 <span>
                     <label htmlFor="productSize">Choose size</label>
                     <select name="productSize" id="productSize" value={size} onChange={(e)=>setSize(e.target.value)}>
@@ -133,26 +116,21 @@ const handleAddToCart = async() =>{
                 <span>
                     <label htmlFor="productQuantity">Quantity</label>
                     <select name="productQuantity" id="productQuantity" value={productQuantity} onChange={(e)=>setProductQuantity(e.target.value)}>
-
                         <option value={1}>1</option>
                         <option value={2}>2</option>
                         <option value={3}>3</option>
                         <option value={4}>4</option>
                         <option value={5}>5</option>
                         <option value={6}>6</option>
-
                     </select>
                 </span>
-
-                <span><h5><b>Price: </b> 	&#8377; {parseInt(productPrice - (productPrice * productDiscount)/100)}  </h5> <s>{productPrice}</s> <p>({productDiscount}% off)</p></span>
+                <span><h5><b>Price: </b>  &#8377; {parseInt(productPrice - (productPrice * productDiscount)/100)}  </h5> <s>{productPrice}</s> <p>({productDiscount}% off)</p></span>
                 <h6><b>Rating:</b> 3.4/5 </h6>
                 <p className="delivery-date">Free delivery in 5 days</p>
-
                 <div className="productBuyingButtons">
                     <button data-bs-toggle="modal" data-bs-target="#staticBackdrop">Buy now</button>
                     <button onClick={handleAddToCart}>Add to cart</button>
                 </div>
-
             </div>
         </div>
 

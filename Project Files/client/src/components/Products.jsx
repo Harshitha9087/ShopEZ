@@ -195,13 +195,19 @@ const navigate = useNavigate();
 
                 {visibleProducts.map((product)=>{
                     return(
-                        <div className='product-item' >
+                        <div className='product-item' key={product._id}>
                             <div className="product" onClick={()=> navigate(`/product/${product._id}`)}>
-                                <img src={product.mainImg} alt="" />
+                                <img src={product.mainImg} alt={product.title} />
                                 <div className="product-data">
                                     <h6>{product.title}</h6>
-                                    <p>{product.description.slice(0,30) + '....'}</p>
-                                    <h5>&#8377; {parseInt(product.price - (product.price * product.discount)/100)} <s>{product.price}</s><p>( {product.discount}% off)</p></h5>
+                                    <p><b>Category:</b> {product.category}</p>
+                                    <p><b>Gender:</b> {product.gender}</p>
+                                    <p>{product.description.slice(0, 60) + (product.description.length > 60 ? '...' : '')}</p>
+                                    <h5>
+                                        &#8377; {parseInt(product.price - (product.price * product.discount)/100)}
+                                        <s>{product.price}</s>
+                                        <p>({product.discount}% off)</p>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
